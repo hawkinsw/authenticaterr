@@ -1,5 +1,10 @@
-all: authenticaterr.c
+all: vulnerable canary
+
+vulnerable: authenticaterr.c
 	gcc -g -fno-stack-protector -O0 authenticaterr.c -o authenticaterr
+
+canary: authenticaterr.c
+	gcc -g -fstack-protector -O0 authenticaterr.c -o authenticaterr_canary
 
 input:
 	/bin/echo -e "user" > user.txt
